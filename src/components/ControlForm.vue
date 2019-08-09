@@ -3,7 +3,6 @@
     grid-list-xl
     fluid
   >
-  <img src="@/img/baseline-expand_more-24px.svg" alt="expand_down" srcset="">
     <app-input
       input-id="control1"
       :num="control1"

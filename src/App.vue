@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <v-app id="inspire">
+
       <ControlForm/>
-    </v-app>
+
   </div>
 </template>
 
@@ -24,9 +24,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   // text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 100px;
   margin-left: 15%;
-  width: 500px;
-  height: 500px;
+  width: 300px;
+  height: 200px;
+-webkit-box-shadow: 2px 6px 21px 1px rgba(0,0,0,0.27);
+-moz-box-shadow: 2px 6px 21px 1px rgba(0,0,0,0.27);
+box-shadow: 2px 6px 21px 1px rgba(0,0,0,0.27);
 }
 </style>

@@ -16,6 +16,7 @@
 </template>
 
 <script>
+// TODO: Mask implement
 export default {
   props: {
     num: {
@@ -70,14 +71,17 @@ input[type="number"] {
   padding-left: 1rem;
   &:hover{
     color:darken(lightskyblue, 8%);
-    background: #eee url(/img/baseline-expand_more-24px.svg) no-repeat 7px 7px;  
+    appearance: textfield;
+    -webkit-appearance: none;
   }
-  :not(.active) {
-  //background-image: "@/img/baseline-expand_more-24px.svg"
-  //background: red no-repeat scroll 7px 7px;
-  background-color: red;
-}
-  
+  &:not(.active) {
+    background: transparent url(../img/baseline-expand_more-24px.svg) no-repeat 100% 50%;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button{
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
 }
 .active{
   border: 1px solid lightgray;
