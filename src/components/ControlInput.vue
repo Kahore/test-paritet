@@ -4,11 +4,12 @@
     type="number"
     v-model="inputVal"
     :id="inputId"
+    :class="{ 'active': inputId === tmpId }"
     @click="editNum($event)"
     @touchstart="editNum($event)"
     @blur="editDone($event)"
     @keyup.enter="editDone($event)"
-    @keyup.tab="editDone($event)"
+    @keyup.tab="editDone($event);editNum($event)"
     @keyup.esc="editCancel($event)"
   >
 
@@ -26,29 +27,27 @@ export default {
     }
   },
   data: () => ( {
-    tmpNum: ''
+    tmpNum: '',
+    tmpId: ''
   } ),
   methods: {
     editNum ( e ) {
       this.tmpNum = e.target.value;
-     
+      this.tmpId = e.target.id;
       e.target.value = 0;
       e.target.select();
-      console.log( 'TCL: editNum -> this.tmpNum', this.tmpNum );
     },
     editDone ( e ) {
-      console.log( 'TCL: editDone -> val', e.target.value );
       if ( e.target.id !== 'control1' ) {
         this.$store.dispatch( 'MUTATE_CONTROL2', e.target.value );
       } else {
-         this.$store.dispatch( 'MUTATE_CONTROL1', e.target.value );
+        this.$store.dispatch( 'MUTATE_CONTROL1', e.target.value );
       }
-      this.$store.dispatch( 'SET_EDIT', null );
+      this.tmpId = null;
     },
     editCancel ( e ) {
       e.target.value = this.tmpNum;
-      console.log( 'TCL: editDone -> val', this.tmpNum );
-      this.$store.dispatch( 'SET_EDIT', null );
+      this.tmpId = null;
     }
   },
   computed: {
@@ -68,7 +67,19 @@ export default {
 <style scoped lang="scss">
 input[type="number"] {
   outline: none;
-  border: 1px solid lightgray;
   padding-left: 1rem;
+  &:hover{
+    color:darken(lightskyblue, 8%);
+    background: #eee url(/img/baseline-expand_more-24px.svg) no-repeat 7px 7px;  
+  }
+  :not(.active) {
+  //background-image: "@/img/baseline-expand_more-24px.svg"
+  //background: red no-repeat scroll 7px 7px;
+  background-color: red;
+}
+  
+}
+.active{
+  border: 1px solid lightgray;
 }
 </style>
