@@ -7,12 +7,16 @@
       input-id="control1"
       :num="control1"
       tabindex="1"/>
-    <small @click="sumControl()">Сумма</small><br>
+    <small 
+      id="sumControl"
+      @click="sumControl()">Сумма</small><br>
     <app-input
       input-id="control2"
       :num="control2"
       tabindex="2"/>
-    <small @click="setConst()">Константа</small><br>
+    <small 
+      id="setConst"
+      @click="setConst()">Константа</small><br>
     <app-input
       input-id="control3"
       :num="control2"

@@ -1,18 +1,14 @@
 <template>
   <div id="app">
-
-      <ControlForm/>
-
+    <ControlForm/>
   </div>
 </template>
 
 <script>
-import ControlForm from './components/ControlForm.vue';
-
 export default {
   name: 'app',
   components: {
-    ControlForm
+    ControlForm: () => import('./components/ControlForm.vue')
   }
 };
 </script>
@@ -28,8 +24,8 @@ export default {
   margin-left: 15%;
   width: 300px;
   height: 200px;
--webkit-box-shadow: 2px 6px 21px 1px rgba(0,0,0,0.27);
--moz-box-shadow: 2px 6px 21px 1px rgba(0,0,0,0.27);
-box-shadow: 2px 6px 21px 1px rgba(0,0,0,0.27);
+  -webkit-box-shadow: 2px 6px 21px 1px rgba(0,0,0,0.27);
+  -moz-box-shadow: 2px 6px 21px 1px rgba(0,0,0,0.27);
+  box-shadow: 2px 6px 21px 1px rgba(0,0,0,0.27);
 }
 </style>

@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>6/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">60% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/5</span>
+        <span class='fraction'>3/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>6/8</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -117,7 +117,11 @@
 72
 73
 74
-75</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+75
+76
+77
+78
+79</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,25 +147,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -169,10 +165,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -200,12 +208,16 @@
       input-id="control1"
       :num="control1"
       tabindex="1"/&gt;
-    &lt;small @click="sumControl()"&gt;Сумма&lt;/small&gt;&lt;br&gt;
+    &lt;small 
+      id="sumControl"
+      @click="sumControl()"&gt;Сумма&lt;/small&gt;&lt;br&gt;
     &lt;app-input
       input-id="control2"
       :num="control2"
       tabindex="2"/&gt;
-    &lt;small @click="setConst()"&gt;Константа&lt;/small&gt;&lt;br&gt;
+    &lt;small 
+      id="setConst"
+      @click="setConst()"&gt;Константа&lt;/small&gt;&lt;br&gt;
     &lt;app-input
       input-id="control3"
       :num="control2"
@@ -217,36 +229,36 @@
 &nbsp;
 export default {
   components: {
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    'app-input': () =&gt; import( '@/components/ControlInput' )</span></span>
+    'app-input': () =&gt; import( '@/components/ControlInput' )
   },
   name: 'ControlForm',
   computed: {
     control1: {
-<span class="fstat-no" title="function not covered" >      get: function () {</span>
-<span class="cstat-no" title="statement not covered" >        return this.$store.getters.GET_CONTROL1;</span>
+      get: function () {
+        return this.$store.getters.GET_CONTROL1;
       },
 <span class="fstat-no" title="function not covered" >      set: function ( num ) {</span>
 <span class="cstat-no" title="statement not covered" >        this.$emit( 'input', num );</span>
       }
     },
     control2: {
-<span class="fstat-no" title="function not covered" >      get: function () {</span>
-<span class="cstat-no" title="statement not covered" >        return this.$store.getters.GET_CONTROL2;</span>
+      get: function () {
+        return this.$store.getters.GET_CONTROL2;
       },
 <span class="fstat-no" title="function not covered" >      set: function ( num ) {</span>
 <span class="cstat-no" title="statement not covered" >        this.$emit( 'input', num );</span>
       }
     },
     control_const () {
-<span class="cstat-no" title="statement not covered" >      return this.$store.getters.GET_CONTROL_CONST;</span>
+      return this.$store.getters.GET_CONTROL_CONST;
     }
   },
   methods: {
     sumControl () {
-<span class="cstat-no" title="statement not covered" >      this.$store.dispatch( 'MUTATE_SUMM' );</span>
+      this.$store.dispatch( 'MUTATE_SUMM' );
     },
     setConst () {
-<span class="cstat-no" title="statement not covered" >      this.$store.dispatch( 'MUTATE_CONTROL2', this.control_const );</span>
+      this.$store.dispatch( 'MUTATE_CONTROL2', this.control_const );
     }
   }
 &nbsp;
@@ -271,7 +283,7 @@ small{
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Aug 10 2019 12:11:53 GMT+0700 (Krasnoyarsk Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Aug 10 2019 14:04:09 GMT+0700 (Krasnoyarsk Standard Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>
