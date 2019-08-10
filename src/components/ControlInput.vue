@@ -19,7 +19,6 @@
 
 <script>
 import { setTimeout } from 'timers';
-// TODO: Mask implement
 export default {
   props: {
     num: {
@@ -45,13 +44,12 @@ export default {
       }
     },
     editNum ( e ) {
-      e.target.value = e.target.value.replace('/ /g','')
-      this.tmpNum = Number(e.target.value);
-      console.log("TCL: editNum ->  this.tmpNum",  this.tmpNum)
-
+      // MEMO: Irregular whitespace below from toLocaleString
+      /* eslint-disable-next-line */
+      e.target.value = e.target.value.replace( / /g, '' );
+      this.tmpNum = Number( e.target.value );
       this.tmpId = e.target.id;
       setTimeout( function () { e.target.select(); }, 0 );
-      // e.target.value = 0;
       if ( e.target.id !== 'control1' ) {
         this.$store.dispatch( 'MUTATE_CONTROL2', 0 );
       } else {
@@ -69,17 +67,13 @@ export default {
       }
     },
     editCancel ( e ) {
-      // e.target.value = this.tmpNum;
-      let nm = this.tmpNum.replace('/ /g','')
-             console.log("TCL: editCancel -> this.tmpNum", nm)
-            if ( e.target.id !== 'control1' ) {
-        this.$store.dispatch( 'MUTATE_CONTROL2', Number(nm) );
- 
+      let nm = this.tmpNum;
+      if ( e.target.id !== 'control1' ) {
+        this.$store.dispatch( 'MUTATE_CONTROL2', Number( nm ) );
       } else {
-        this.$store.dispatch( 'MUTATE_CONTROL1', Number(nm) );
+        this.$store.dispatch( 'MUTATE_CONTROL1', Number( nm ) );
       }
       this.tmpId = null;
-      //e.target.blur();
     }
   },
   computed: {
