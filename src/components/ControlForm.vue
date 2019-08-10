@@ -3,24 +3,28 @@
     grid-list-xl
     fluid
   >
+
     <app-input
       input-id="control1"
       :num="control1"
-      tabindex="1"/>
-    <small 
+      :idx="1"/>
+    <small
       id="sumControl"
       @click="sumControl()">Сумма</small><br>
     <app-input
       input-id="control2"
+      :idx="2"
       :num="control2"
-      tabindex="2"/>
-    <small 
+     />
+    <small
       id="setConst"
       @click="setConst()">Константа</small><br>
     <app-input
       input-id="control3"
+      :idx="3"
       :num="control2"
-      tabindex="3"/>
+     />
+
   </v-container>
 </template>
 

@@ -1,8 +1,10 @@
 <template>
-
   <input
-    type="number"
-    v-model="inputVal"
+    type="text"
+    min="0"
+    pattern="[0-9]+"
+    :tabindex="idx"
+    v-model.number="inputVal"
     :id="inputId"
     :class="{ 'active': inputId === tmpId }"
     @click="editNum($event)"
@@ -11,11 +13,12 @@
     @keyup.enter="editDone($event)"
     @keyup.tab="editDone($event);editNum($event)"
     @keyup.esc="editCancel($event)"
+    @keypress="checkNum($event)"
   >
-
 </template>
 
 <script>
+import { setTimeout } from 'timers';
 // TODO: Mask implement
 export default {
   props: {
@@ -25,6 +28,10 @@ export default {
     inputId: {
       type: [String, Number],
       default: ''
+    },
+    idx: {
+      type: [Number],
+      default: 0
     }
   },
   data: () => ( {
@@ -32,29 +39,53 @@ export default {
     tmpId: ''
   } ),
   methods: {
+    checkNum ( e ) {
+      if ( e.which < 48 || e.which > 57 ) {
+        e.preventDefault();
+      }
+    },
     editNum ( e ) {
-      this.tmpNum = e.target.value;
+      e.target.value = e.target.value.replace('/ /g','')
+      this.tmpNum = Number(e.target.value);
+      console.log("TCL: editNum ->  this.tmpNum",  this.tmpNum)
+
       this.tmpId = e.target.id;
-      e.target.value = 0;
-      e.target.select();
+      setTimeout( function () { e.target.select(); }, 0 );
+      // e.target.value = 0;
+      if ( e.target.id !== 'control1' ) {
+        this.$store.dispatch( 'MUTATE_CONTROL2', 0 );
+      } else {
+        this.$store.dispatch( 'MUTATE_CONTROL1', 0 );
+      }
     },
     editDone ( e ) {
-      if ( e.target.id !== 'control1' ) {
-        this.$store.dispatch( 'MUTATE_CONTROL2', e.target.value );
-      } else {
-        this.$store.dispatch( 'MUTATE_CONTROL1', e.target.value );
+      if ( !isNaN( Number( e.target.value ) ) ) {
+        if ( e.target.id !== 'control1' ) {
+          this.$store.dispatch( 'MUTATE_CONTROL2', e.target.value );
+        } else {
+          this.$store.dispatch( 'MUTATE_CONTROL1', e.target.value );
+        }
+        this.tmpId = null;
       }
-      this.tmpId = null;
     },
     editCancel ( e ) {
-      e.target.value = this.tmpNum;
+      // e.target.value = this.tmpNum;
+      let nm = this.tmpNum.replace('/ /g','')
+             console.log("TCL: editCancel -> this.tmpNum", nm)
+            if ( e.target.id !== 'control1' ) {
+        this.$store.dispatch( 'MUTATE_CONTROL2', Number(nm) );
+ 
+      } else {
+        this.$store.dispatch( 'MUTATE_CONTROL1', Number(nm) );
+      }
       this.tmpId = null;
+      //e.target.blur();
     }
   },
   computed: {
     inputVal: {
       get: function () {
-        let _num = Number( this.num );
+        let _num = Number( this.num ).toLocaleString( 'ru-RU' );
         return _num;
       },
       set: function ( num ) {
@@ -66,7 +97,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-input[type="number"] {
+input[type="text"] {
   outline: none;
   padding-left: 1rem;
   &:hover{

@@ -8,7 +8,7 @@
 export default {
   name: 'app',
   components: {
-    ControlForm: () => import('./components/ControlForm.vue')
+    ControlForm: () => import( './components/ControlForm.vue' )
   }
 };
 </script>
